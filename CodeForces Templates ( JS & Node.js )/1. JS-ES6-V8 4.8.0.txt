@@ -1,0 +1,52 @@
+/* ----------------------------------------------- */
+/*  Template by Bharadwaj ( The Authentic JS CodeBuff )  */
+/* ------------------------------------------------ */
+/*    Youtube: https://youtube.com/@code-with-Bharadwaj   */
+/*    Portfolio: https://manu-bharadwaj-portfolio.vercel.app/ */
+/* ----------------------------------------------- */
+
+"use strict";
+
+// Step 1: Read the number of test cases from the input
+let n = Number(readline()); // readline() reads a line from the input and converts it to a number
+
+// Step 2: Iterate over each test case
+for (let i = 0; i < n; i++) {
+  // Step 3: Read the values of 'a' and 'b' for the current test case
+  let ab = readline().split(" ").map(Number); // Split the input line into two parts and convert them to numbers
+  let a = ab[0]; // First value
+  let b = ab[1]; // Second value
+
+  // Step 4: Compute the total sum as per the problem's requirement
+  let totalSum = a + 2 * b; // Calculate the total sum
+
+  // Step 5: Check if the total sum is odd
+  if (totalSum % 2 !== 0) {
+    print("NO"); // Output "NO" if the total sum is odd
+  } else {
+    // Step 6: Additional checks if the total sum is even
+    if (b % 2 !== 0 && a === 0) {
+      print("NO"); // Output "NO" if 'b' is odd and 'a' is zero
+    } else {
+      print("YES"); // Output "YES" otherwise
+    }
+  }
+}
+
+Explanation for Codeforces Environment:
+Read Input:
+
+Use readline() to read input from the Codeforces environment. It reads a line of input as a string.
+Convert the string to a number using Number().
+Process Each Test Case:
+
+Use a loop to iterate through each test case based on the number read initially.
+For each test case, split the input line into components, convert them to numbers, and store them in variables.
+Compute and Output Results:
+
+Perform the required calculations and checks.
+Use the print() function to output results. This function prints the result directly, which is appropriate for Codeforces.
+Using JavaScript V8 4.8.0:
+Codeforces uses a specific JavaScript engine that supports ES6 features compatible with JavaScript V8 4.8.0. Ensure your code uses only those features.
+Avoid unsupported features like destructuring and return in favor of simpler constructs and functions.
+This template ensures that your code adheres to the requirements and limitations of the Codeforces environment.

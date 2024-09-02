@@ -1,0 +1,43 @@
+/* ----------------------------------------------- */
+/*  Template by Bharadwaj ( The Authentic JS CodeBuff )  */
+/* ------------------------------------------------ */
+/*    Youtube: https://youtube.com/@code-with-Bharadwaj   */
+/*    Portfolio: https://manu-bharadwaj-portfolio.vercel.app/ */
+/* ----------------------------------------------- */
+
+// Read the number of test cases
+var x = readline();
+
+// Variable to store input lines
+var inp;
+
+// Loop through each test case
+for (var i = 0; i < x; i++) {
+    // Read the input line and split it into an array
+    inp = readline().split(" ");
+
+    // Print the result (in Codeforces, this will be the output for each test case)
+    print(inp.join(","));
+}
+
+
+Explanation:
+
+Reading Inputs:
+
+var x = readline(); reads the first line of input, which is expected to be the number of test cases or lines.
+
+In a loop, inp = readline().split(" "); reads each subsequent line of input and splits it by spaces into an array.
+Outputting Results:
+
+print(inp.join(",")); outputs the array as a comma-separated string, suitable for Codeforces format.
+
+Usage in Codeforces:
+
+Copy and paste the above code into the Codeforces IDE.
+
+Ensure your input matches the expected format (e.g., first line for the number of test cases, followed by input lines).
+
+The print() function outputs results to the console, which Codeforces captures and evaluates.
+
+This ES5 code should be compatible with Codeforces and meets the requirements outlined.
