@@ -1,0 +1,300 @@
+Time Complexity & Space Complexity of important Algorithms
+
+// Sorting Algorithms
+// Bubble Sort
+// TC: O(n^2)
+// SC: O(1)
+
+// Selection Sort
+// TC: O(n^2)
+// SC: O(1)
+
+// Insertion Sort
+// TC: O(n^2)
+// SC: O(1)
+
+// Merge Sort
+// TC: O(n log n)
+// SC: O(n)
+
+// Quick Sort
+// TC: O(n log n) (average)
+// SC: O(log n)
+
+// Heap Sort
+// TC: O(n log n)
+// SC: O(1)
+
+// Counting Sort
+// TC: O(n + k)
+// SC: O(k)
+
+// Radix Sort
+// TC: O(nk)
+// SC: O(n + k)
+
+// Bucket Sort
+// TC: O(n^2) (worst)
+// SC: O(n)
+
+// Searching Algorithms
+// Linear Search
+// TC: O(n)
+// SC: O(1)
+
+// Binary Search
+// TC: O(log n)
+// SC: O(1)
+
+// Jump Search
+// TC: O(√n)
+// SC: O(1)
+
+// Interpolation Search
+// TC: O(log log n)
+// SC: O(1)
+
+// Exponential Search
+// TC: O(log n)
+// SC: O(1)
+
+// Graph Algorithms
+// Depth-First Search (DFS)
+// TC: O(V + E)
+// SC: O(V)
+
+// Breadth-First Search (BFS)
+// TC: O(V + E)
+// SC: O(V)
+
+// Dijkstra’s Algorithm
+// TC: O(V^2) (or O(E + V log V) with priority queue)
+// SC: O(V)
+
+// Bellman-Ford Algorithm
+// TC: O(VE)
+// SC: O(V)
+
+// Floyd-Warshall Algorithm
+// TC: O(V^3)
+// SC: O(V^2)
+
+// Kruskal’s Algorithm
+// TC: O(E log E)
+// SC: O(V)
+
+// Prim’s Algorithm
+// TC: O(E log V)
+// SC: O(V)
+
+// Dynamic Programming Algorithms
+// Knapsack Problem
+// TC: O(nW)
+// SC: O(nW)
+
+// Longest Common Subsequence (LCS)
+// TC: O(mn)
+// SC: O(mn)
+
+// Matrix Chain Multiplication
+// TC: O(n^3)
+// SC: O(n^2)
+
+// Edit Distance
+// TC: O(mn)
+// SC: O(mn)
+
+// Fibonacci Sequence
+// TC: O(n)
+// SC: O(n)
+
+// Advanced Algorithms
+// KMP Algorithm
+// TC: O(n + m)
+// SC: O(m)
+
+// Rabin-Karp Algorithm
+// TC: O(n + m)
+// SC: O(m)
+
+// A* Search Algorithm
+// TC: O(E)
+// SC: O(V)
+
+// Tarjan’s Algorithm
+// TC: O(V + E)
+// SC: O(V)
+
+// Sieve of Eratosthenes
+// TC: O(n log log n)
+// SC: O(n)
+
+// Backtracking Algorithms
+// N-Queens Problem
+// TC: O(N!)
+// SC: O(N^2)
+
+// Subset Sum Problem
+// TC: O(nW)
+// SC: O(nW)
+
+// Topological Sort
+// TC: O(V + E)
+// SC: O(V)
+
+// Longest Path in DAG
+// TC: O(V + E)
+// SC: O(V)
+
+// Top-Down Dynamic Programming
+// TC: O(n^2)
+// SC: O(n^2)
+
+// Min Priority Queue (using a Min Heap)
+// TC: O(log n) for insert and extract-min
+// SC: O(n)
+
+// Max Priority Queue (using a Max Heap)
+// TC: O(log n) for insert and extract-max
+// SC: O(n)
+
+// Min Heap
+// TC: O(log n) for insert and extract-min
+// SC: O(n)
+
+// Max Heap
+// TC: O(log n) for insert and extract-max
+// SC: O(n)
+
+// Segment Tree
+// TC: O(log n) for update and query
+// SC: O(n)
+
+// Fenwick Tree (Binary Indexed Tree)
+// TC: O(log n) for update and query
+// SC: O(n)
+
+// AVL Tree (Self-Balancing Binary Search Tree)
+// TC: O(log n) for insert, delete, and search
+// SC: O(n)
+
+// Red-Black Tree (Self-Balancing Binary Search Tree)
+// TC: O(log n) for insert, delete, and search
+// SC: O(n)
+
+// Trie (Prefix Tree)
+// TC: O(m) for insert and search (m = length of the word)
+// SC: O(n * m) (n = number of words, m = length of the word)
+
+// Suffix Tree
+// TC: O(n) for construction
+// SC: O(n^2)
+
+// Suffix Array
+// TC: O(n log n) for construction
+// SC: O(n)
+
+// Disjoint Set Union (Union-Find)
+// TC: O(α(n)) (almost constant time with path compression)
+// SC: O(n)
+
+// Binary Search Tree (BST)
+// TC: O(log n) for balanced BST (O(n) for skewed BST)
+// SC: O(n)
+
+// B-Tree
+// TC: O(log n) for insert, delete, and search
+// SC: O(n)
+
+// Skip List
+// TC: O(log n) for search, insert, and delete
+// SC: O(n)
+
+// Fast Fourier Transform (FFT)
+// TC: O(n log n)
+// SC: O(n)
+
+// Convex Hull (e.g., Graham's Scan, Jarvis March)
+// TC: O(n log n) for Graham's Scan
+// SC: O(n)
+
+// Euclidean Algorithm (for GCD)
+// TC: O(log(min(a, b)))
+// SC: O(1)
+
+// Extended Euclidean Algorithm (for GCD and coefficients)
+// TC: O(log(min(a, b)))
+// SC: O(1)
+
+// Karatsuba Multiplication (for large integers)
+// TC: O(n^log2(3)) ≈ O(n^1.585)
+// SC: O(n)
+
+// Strassen's Algorithm (Matrix Multiplication)
+// TC: O(n^log2(7)) ≈ O(n^2.81)
+// SC: O(n^2)
+
+// Knuth-Morris-Pratt (KMP) Pattern Matching
+// TC: O(n + m)
+// SC: O(m)
+
+// Rabin-Karp Pattern Matching
+// TC: O(n + m) (average case)
+// SC: O(m)
+
+// Boyer-Moore Pattern Matching
+// TC: O(n + m) (average case)
+// SC: O(m)
+
+// Dijkstra's Algorithm
+// TC: O(V^2) (or O(E + V log V) with priority queue)
+// SC: O(V)
+
+// Bellman-Ford Algorithm
+// TC: O(VE)
+// SC: O(V)
+
+// Floyd-Warshall Algorithm
+// TC: O(V^3)
+// SC: O(V^2)
+
+// Kruskal's Algorithm (Minimum Spanning Tree)
+// TC: O(E log E)
+// SC: O(V)
+
+// Prim's Algorithm (Minimum Spanning Tree)
+// TC: O(E log V)
+// SC: O(V)
+
+// Longest Common Subsequence (LCS)
+// TC: O(mn)
+// SC: O(mn)
+
+// Matrix Chain Multiplication
+// TC: O(n^3)
+// SC: O(n^2)
+
+// Edit Distance
+// TC: O(mn)
+// SC: O(mn)
+
+// Fibonacci Sequence (Dynamic Programming)
+// TC: O(n)
+// SC: O(n)
+
+// Backtracking Algorithms
+// N-Queens Problem
+// TC: O(N!)
+// SC: O(N^2)
+
+// Subset Sum Problem
+// TC: O(nW)
+// SC: O(nW)
+
+// Topological Sort
+// TC: O(V + E)
+// SC: O(V)
+
+// Longest Path in DAG
+// TC: O(V + E)
+// SC: O(V)
