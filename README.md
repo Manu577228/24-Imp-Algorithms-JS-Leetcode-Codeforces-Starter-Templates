@@ -1,4 +1,4 @@
-Welcome to Algorithms & Templates by Manu Bharadwaj ( Leetcode & Codeforces Templates in JAVASCRIPT )
+Welcome to Algorithms & Templates by Manu Bharadwaj ( Leetcode & Codeforces Starter Templates in JAVASCRIPT )
 
 Hey there! 👋 I'm Manu Bharadwaj. If you find this repository useful or interesting, please consider giving it a ⭐️!
 
