@@ -39,19 +39,30 @@ A collection of 22 JavaScript algorithms, each with code, explanations, examples
 
 📋 Templates :
 
-LeetCode Templates :
+LeetCode Starter Templates :
 
 1. Trie
 2. Min Priority Queue
 3. Max Priority Queue
 4. Segment Tree
 5. Fenwick Tree
+6. Min Heap
+7. Max Heap
 
-Codeforces Submission Templates :
+Codeforces Submission Templates & Starter Templates :
 
 1. How to submit JavaScript V8 4.8.0 ES-6 supported code. ( JAVASCRIPT V8 4.8.0 with ES-6 Supported Features)
 2. How to submit JS ES-5 supported code. ( JAVASCRIPT V8 4.8.0 with ES-5 Features )
 3. How to submit Node.js with ES-6 supported code. ( Node.js 15.8.0 )
+4. Segment Tree Template ( Node.js )
+5. Lazy Segment Tree Template ( Node.js )
+6. Fenwick Tree Template ( Node.js )
+7. Min Priority Queue (Min Heap) Template ( Node.js )
+8. Max Priority Queue (Max Heap) Template ( Node.js )
+9. Dijkstra's Algorithm Template ( Node.js )
+10. Euclidean Algorithm (GCD) Template ( Node.js )
+11. Bellman-Ford Algorithm Template ( Node.js )
+12. Trie (Prefix Tree) Template ( Node.js )
 
 Getting Started :
 
