@@ -36,14 +36,16 @@ A collection of 22 JavaScript algorithms, each with code, explanations, examples
 20. Bellman-Ford Algorithm
 21. Kruskal's Algorithm
 22. Topological Sorting
+23. Tarjan's Graph optimization Algorithm
+24. Recursion using DFS
 
 📋 Templates :
 
 LeetCode Starter Templates :
 
 1. Trie
-2. Min Priority Queue
-3. Max Priority Queue
+2. Min Priority Queue [ Min Heap ]
+3. Max Priority Queue [ Max Heap ]
 4. Segment Tree
 5. Fenwick Tree
 6. Min Heap
