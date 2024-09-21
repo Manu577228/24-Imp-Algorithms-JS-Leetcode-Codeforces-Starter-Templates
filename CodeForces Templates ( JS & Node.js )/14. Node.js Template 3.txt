@@ -1,0 +1,206 @@
+var fs = require("fs");
+/* -------------------------------------------------------- */
+/*   ( The Authentic JS CodeBuff )
+ ___ _                      _              _ 
+ | _ ) |_  __ _ _ _ __ _ __| |_ __ ____ _ (_)
+ | _ \ ' \/ _` | '_/ _` / _` \ V  V / _` || |
+ |___/_||_\__,_|_| \__,_\__,_|\_/\_/\__,_|/ |
+                                        |__/ 
+ */
+/* ---------------------------------------------------------   */
+/*    Youtube: https://youtube.com/@code-with-Bharadwaj        */
+/*    Portfolio:https://manu-bharadwaj-portfolio.vercel.app/  */
+/* ----------------------------------------------------------- */
+
+var Bharadwaj = {
+    _buf: Buffer.alloc(1 << 14),
+    _bufPos: 0,
+    _bufLen: 0,
+    
+    _ensure: function() {
+        if (this._bufPos === this._bufLen) {
+            this._bufPos = 0;
+            this._bufLen = fs.readSync(0, this._buf, 0, this._buf.length, null);
+        }
+    },
+    
+    _isws: function(ch) {
+        return ch === 32 || ch === 9 || ch === 10 || ch === 13;
+    },
+    
+    _islf: function(ch) {
+        return ch === 10 || ch === 13;
+    },
+    
+    _peekChar: function() {
+        this._ensure();
+        return this._bufPos === this._bufLen ? 0 : this._buf[this._bufPos];
+    },
+    
+    _skipWs: function() {
+        while (this._isws(this._peekChar()))
+            this._bufPos++;
+    },
+    
+    _readUntil: function(stop) {
+        this._ensure();
+        if (this._bufPos === this._bufLen)
+            throw new Error("eof");
+        var start = this._bufPos;
+        var before = null;
+        for (;;) {
+            if (this._bufPos === this._bufLen) {
+                var len = this._bufPos - start, preLen = (before ? before.length : 0);
+                var nbuf = Buffer.alloc(len + preLen);
+                if (before)
+                    before.copy(nbuf);
+                before = nbuf;
+                this._buf.copy(before, preLen, start);
+                this._ensure();
+                start = this._bufPos;
+            }
+            if (this._bufPos === this._bufLen || stop(this._buf[this._bufPos])) break;
+            this._bufPos++;
+        }
+        if (!before)
+            return this._buf.toString("utf8", start, this._bufPos);
+        var after = this._buf.slice(start, this._bufPos);
+        var res = Buffer.alloc(before.length + after.length);
+        before.copy(res);
+        after.copy(res, before.length);
+        return res.toString();
+    },
+
+    nextToken: function() {
+        this._skipWs();
+        return this._readUntil(this._isws);
+    },
+
+    nextLine: function() {
+        var line = this._readUntil(this._islf);
+        if (this._peekChar() === 13) this._bufPos++;
+        if (this._peekChar() === 10) this._bufPos++;
+        return line;
+    },
+
+    nextNumber: function() { return +this.nextToken(); },
+    
+    nextInt: function() { return this.nextToken() | 0; }
+};
+
+class FastQueue {
+    constructor() {
+        this.map = {};
+        this.first = 0;
+        this.last = -1;
+    }
+    
+    push(...args) {
+        let i = 0;
+        if (!this.length) {
+            this.first = this.last = 0;
+            this.map[this.first] = args[i++];
+        }
+        for (; i < args.length; i++) {
+            this.map[++this.last] = args[i];
+        }
+    }
+    
+    unshift(...args) {
+        let i = 0;
+        if (!this.length) {
+            this.first = this.last = 0;
+            this.map[this.first] = args[i++];
+        }
+        for (; i < args.length; i++) {
+            this.map[--this.first] = args[i];
+        }
+    }
+    
+    pop() {
+        const r = this.map[this.last];
+        delete this.map[this.last];
+        this.last--;
+        return r;
+    }
+    
+    shift() {
+        const r = this.map[this.first];
+        delete this.map[this.first];
+        this.first++;
+        return r;
+    }
+    
+    get length() {
+        if (this.first > this.last) return 0;
+        return this.last - this.first + 1;
+    }
+    
+    get(x) {
+        return this.map[this.first + x];
+    }
+    
+    getLast() {
+        return this.map[this.last];
+    }
+    
+    forEach(fn) {
+        for (let i = this.first; i <= this.last; i++) {
+            const r = fn(this.map[i], i - this.first);
+            if (r === false) break;
+        }
+    }
+}
+
+let t = Bharadwaj.nextNumber(); // Read the number of test cases
+while (t--) console.log(solve()); // Execute the solve function for each test case
+
+function solve() {
+    const n = Bharadwaj.nextNumber(); // Read n, the number of items
+    const d = Bharadwaj.nextNumber(); // Read d, the distance constraint
+    const k = Bharadwaj.nextNumber(); // Read k, the number of ranges
+    
+    const ls = Array(n + 1).fill(0); // Left side array to count ranges
+    const rs = Array(n + 1).fill(0); // Right side array to count ranges
+    
+    for (let i = 0; i < k; i++) { // Loop through the ranges
+        const l = Bharadwaj.nextNumber(); // Read left boundary
+        const r = Bharadwaj.nextNumber(); // Read right boundary
+        ls[l]++; // Increment count at left boundary
+        rs[r]++; // Increment count at right boundary
+    }
+    
+    let wd = 0; // Working days
+    let minx = Infinity, mini; // Initialize min values
+    let maxx = -Infinity, maxi; // Initialize max values
+    
+    for (let i = 1; i <= n; i++) { // Iterate through items
+        wd += ls[i]; // Update working days
+        if (i - d + 1 >= 1) { // Check if within distance
+            if (wd > maxx) { // Update max working days
+                maxx = wd;
+                maxi = i - d + 1; // Store the index
+            }
+            if (wd < minx) { // Update min working days
+                minx = wd;
+                mini = i - d + 1; // Store the index
+            }
+            wd -= rs[i - d + 1]; // Remove out-of-range count
+        }
+    }
+    return [maxi, mini].join(' '); // Return the results
+}
+
+
+
+The solution or above submitted working code
+
+one more thing ( use BigInt when dealing with large numbers or large input if required )
+( Define every variable correctly and i shouldnt get any error regarding push and split and reference errors )
+( we cannot mix BigInt and other types if use used in code (use explicit conversions) and use Bigint only when necessary else use Numbers)
+( Use Typed Arrays: If you require a large array, use Typed Arrays (e.g., BigInt64Array, Uint32Array) which are more memory-efficient. )
+( When using BigInt, built-in JavaScript functions like Math.min, Math.max, and others don't work directly because they are designed for Number types, not BigInt. To handle comparisons for BigInt, we need to create custom comparison functions. )
+
+Here is the example of how to submit the node.js / javascript code in codeforces.Use let in place of const ( dont use const ) & please give the correct code! Dont involve any comments except 
+
+
