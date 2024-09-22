@@ -193,14 +193,6 @@ function solve() {
 
 
 
-The solution or above submitted working code
-
-one more thing ( use BigInt when dealing with large numbers or large input if required )
-( Define every variable correctly and i shouldnt get any error regarding push and split and reference errors )
-( we cannot mix BigInt and other types if use used in code (use explicit conversions) and use Bigint only when necessary else use Numbers)
-( Use Typed Arrays: If you require a large array, use Typed Arrays (e.g., BigInt64Array, Uint32Array) which are more memory-efficient. )
-( When using BigInt, built-in JavaScript functions like Math.min, Math.max, and others don't work directly because they are designed for Number types, not BigInt. To handle comparisons for BigInt, we need to create custom comparison functions. )
-
-Here is the example of how to submit the node.js / javascript code in codeforces.Use let in place of const ( dont use const ) & please give the correct code! Dont involve any comments except 
+Here is the template for Node.js / JAVASCRIT for faster Submission and also which takes less memory for codeforces/Codechef which is similar to Fast IO in CPP & Buffer in Python.
 
 
