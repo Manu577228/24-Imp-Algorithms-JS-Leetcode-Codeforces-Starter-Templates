@@ -1,0 +1,30 @@
+var fs = require("fs"), buf = Buffer.alloc(1<<20), bufPos = 0, bufLen = 0;
+function nextChar() { if (bufPos === bufLen) bufLen = fs.readSync(0, buf, 0, buf.length, null), bufPos = 0; return buf[bufPos++]; }
+function nextToken() { let ch, res = ""; while ((ch = nextChar()) <= 32); do res += String.fromCharCode(ch); while ((ch = nextChar()) > 32); return res; }
+function nextNumber() { return +nextToken(); }
+function nextBigInt() { return BigInt(nextToken()); }
+
+class FastQueue { constructor() { this.map = {}; this.first = 0; this.last = -1; } push(x) { this.map[++this.last] = x; } shift() { let r = this.map[this.first]; delete this.map[this.first++]; return r; } get length() { return this.last - this.first + 1; } }
+
+let t = nextNumber();
+while (t--) console.log(solve());
+
+function solve() {
+    let n = nextNumber(), d = nextNumber(), k = nextNumber();
+    let ls = new Uint32Array(n+1), rs = new Uint32Array(n+1), l, r, wd = 0, minx = Infinity, mini, maxx = -Infinity, maxi;
+    
+    for (let i = 0; i < k; i++) ls[l = nextNumber()]++, rs[r = nextNumber()]++;
+
+    // Write your code here
+    for (let i = 1; i <= n; i++) {
+        wd += ls[i];
+        if (i - d + 1 >= 1) {
+            if (wd > maxx) maxx = wd, maxi = i - d + 1;
+            if (wd < minx) minx = wd, mini = i - d + 1;
+            wd -= rs[i - d + 1];
+        }
+    }
+    return `${maxi} ${mini}`;
+}
+
+The above template is the most fastest template for Codeforces/Codechef Sumbmission ( Competitive Programming ) using Node.js / Javascript ( September 2024 )
