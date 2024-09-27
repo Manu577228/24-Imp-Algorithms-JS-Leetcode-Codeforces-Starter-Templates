@@ -1,30 +1,59 @@
-var fs = require("fs"), buf = Buffer.alloc(1<<20), bufPos = 0, bufLen = 0;
-function nextChar() { if (bufPos === bufLen) bufLen = fs.readSync(0, buf, 0, buf.length, null), bufPos = 0; return buf[bufPos++]; }
-function nextToken() { let ch, res = ""; while ((ch = nextChar()) <= 32); do res += String.fromCharCode(ch); while ((ch = nextChar()) > 32); return res; }
-function nextNumber() { return +nextToken(); }
-function nextBigInt() { return BigInt(nextToken()); }
+/*          The Authentic Javascript CodeBuff  		       */		                                     
+/*    Youtube: https://youtube.com/@code-with-Bharadwaj    */
 
-class FastQueue { constructor() { this.map = {}; this.first = 0; this.last = -1; } push(x) { this.map[++this.last] = x; } shift() { let r = this.map[this.first]; delete this.map[this.first++]; return r; } get length() { return this.last - this.first + 1; } }
+let inputBuffer = Buffer.allocUnsafe(1e7);
+let inputIndex = 0, inputLength = 0;
+let outputBuffer = Buffer.allocUnsafe(1e7);
+let outputIndex = 0;
 
-let t = nextNumber();
-while (t--) console.log(solve());
+const fs = require('fs');
 
-function solve() {
-    let n = nextNumber(), d = nextNumber(), k = nextNumber();
-    let ls = new Uint32Array(n+1), rs = new Uint32Array(n+1), l, r, wd = 0, minx = Infinity, mini, maxx = -Infinity, maxi;
-    
-    for (let i = 0; i < k; i++) ls[l = nextNumber()]++, rs[r = nextNumber()]++;
+inputLength = fs.readSync(process.stdin.fd, inputBuffer, 0, inputBuffer.length, null);
 
-    // Write your code here
-    for (let i = 1; i <= n; i++) {
-        wd += ls[i];
-        if (i - d + 1 >= 1) {
-            if (wd > maxx) maxx = wd, maxi = i - d + 1;
-            if (wd < minx) minx = wd, mini = i - d + 1;
-            wd -= rs[i - d + 1];
-        }
+function readInt() {
+    let num = 0, sign = 1;
+    while (inputBuffer[inputIndex] < 48 || inputBuffer[inputIndex] > 57) {
+        if (inputBuffer[inputIndex] === 45) sign = -1;
+        inputIndex++;
     }
-    return `${maxi} ${mini}`;
+    while (inputIndex < inputLength && inputBuffer[inputIndex] >= 48 && inputBuffer[inputIndex] <= 57) {
+        num = num * 10 + (inputBuffer[inputIndex++] - 48);
+    }
+    return num * sign;
 }
+
+function writeInt(value) {
+    if (outputIndex > 0) {
+        outputBuffer[outputIndex++] = 32;
+    }
+    if (value < 0) {
+        outputBuffer[outputIndex++] = 45;
+        value = -value;
+    }
+    let digits = [];
+    do {
+        digits.push(value % 10);
+        value = Math.floor(value / 10);
+    } while (value > 0);
+    for (let i = digits.length - 1; i >= 0; i--) {
+        outputBuffer[outputIndex++] = 48 + digits[i];
+    }
+}
+
+let a = readInt();
+let b = readInt();
+writeInt(a + b);
+
+fs.writeSync(process.stdout.fd, outputBuffer.slice(0, outputIndex));
+
+
+Instructions:
+
+1) Use let for all variable declarations (strictly avoid const).
+2) BigInt for large numbers: Use BigInt only when dealing with large inputs or outputs, but avoid mixing BigInt with normal numbers. If used, ensure explicit conversions between BigInt and other types.
+3) Typed Arrays: If large arrays are required, use Typed Arrays like Uint32Array or BigInt64Array for better memory efficiency.
+4) Custom BigInt functions: Since JavaScript's built-in functions like Math.min or Math.max don't work with BigInt, write custom comparison functions for BigInt.
+5) Buffer-based input/output: The template uses buffer-based I/O for maximum efficiency. Avoid unnecessary splitting or looping through input/output when it's not required.
+6) Handle Errors: Ensure no reference errors (like incorrect use of push, split, etc.) and define every variable appropriately.
 
 The above template is the most fastest template for Codeforces/Codechef Sumbmission ( Competitive Programming ) using Node.js / Javascript ( September 2024 )
