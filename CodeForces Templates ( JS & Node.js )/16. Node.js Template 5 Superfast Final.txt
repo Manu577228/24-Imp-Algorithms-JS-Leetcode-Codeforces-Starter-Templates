@@ -1,4 +1,3 @@
-
 /* -------------------------------------------------------- */
 /*   ( The Authentic JS CodeBuff )
  ___ _                      _              _ 
@@ -18,7 +17,6 @@ let outputBuffer = Buffer.allocUnsafe(1e7);
 let outputIndex = 0;
 
 const fs = require('fs');
-
 inputLength = fs.readSync(process.stdin.fd, inputBuffer, 0, inputBuffer.length, null);
 
 function readInt() {
@@ -33,9 +31,10 @@ function readInt() {
     return num * sign;
 }
 
-function writeInt(value) {
-    if (outputIndex > 0) {
-        outputBuffer[outputIndex++] = 32;
+let isFirstInLine = true;
+function writeInt(value, isLast = false) {
+    if (!isFirstInLine) { 
+        outputBuffer[outputIndex++] = 32; 
     }
     if (value < 0) {
         outputBuffer[outputIndex++] = 45;
@@ -47,21 +46,26 @@ function writeInt(value) {
         value = Math.floor(value / 10);
     } while (value > 0);
     for (let i = digits.length - 1; i >= 0; i--) {
-        outputBuffer[outputIndex++] = 48 + digits[i];
+        outputBuffer[outputIndex++] = 48 + digits[i]; 
+    }
+    isFirstInLine = isLast; 
+    if (isLast) {
+        outputBuffer[outputIndex++] = 10; 
+        isFirstInLine = true; 
     }
 }
 
 const v8Flags = [
-    '--turbo-inline-threshold=500',    // Increase inlining threshold
-    '--max-old-space-size=256',        // Reduce old space size (balance with performance)
-    '--no-lazy',                       // Disable lazy compilation
-    '--optimize-for-size',             // Prioritize code size over speed 
-    '--unbox-small-integers',          // Optimize small integer storage
-    '--predictable',                   // Improve predictability (use cautiously)
-    '--no-use-idle-notification',       // Potentially reduce GC pauses
-    '--single-generation',             // Use a single generational GC (experimental, potential memory benefit)
-    '--compact-maps',                  // Compact Map objects (experimental, potential memory benefit)
-    '--always-compact'                 // Force compaction during GC (can impact performance, use cautiously)
+    '--turbo-inline-threshold=500',   
+    '--max-old-space-size=256',       
+    '--no-lazy',                       
+    '--optimize-for-size',             
+    '--unbox-small-integers',          
+    '--predictable',                   
+    '--no-use-idle-notification',      
+    '--single-generation',             
+    '--compact-maps',                 
+    '--always-compact'                 
 ];
 
 if (v8Flags.length > 0) {
@@ -70,6 +74,8 @@ if (v8Flags.length > 0) {
 
 let a = readInt();
 let b = readInt();
-writeInt(a + b);
-
+writeInt(Math.floor(a / 10)); 
+writeInt(a % 10, true); 
+writeInt(Math.floor(b / 10)); 
+writeInt(b % 10, true); 
 fs.writeSync(process.stdout.fd, outputBuffer.slice(0, outputIndex));
